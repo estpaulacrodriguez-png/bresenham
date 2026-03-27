@@ -26,7 +26,7 @@ function bresenham(x0, y0, x1, y1, plot) {
     let err = dx - dy;
 
     while (true) {
-        // Dibujar el punto actual
+        // Dibujar el punto actual :)
         plot(x0, y0);
 
         // Condición de finalización
