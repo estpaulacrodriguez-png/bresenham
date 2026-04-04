@@ -19,7 +19,7 @@ function drawGrid() {
  * Limpia completamente el canvas antes de volver a dibujar.
  */
 function drawGrid() {
-    ctx.clearRect(0, 0, canvas width,canvas.height);
+    ctx.clearRect(0, 0, canvas.width,canvas.height);
 
     // Dibujar líneas verticales de la cuadrícula
     for (let x = margin; x <= canvas.width - margin; x += gridSize) {
@@ -36,6 +36,17 @@ function drawGrid() {
         ctx.stroke();
     }
 }
-// Dibujar la cuadrícula apenas cargue la página
-drawGrid();
-bresenham(x0, y0, x1, y1, plot);Agregar evento click al botón dibujar
+// Dibujar líneas verticales de la cuadrícula
+for (let y = margin; y <= canvas.height - margin; y += gridSize) {
+    // Iniciar una nueva línea
+    ctx.beginPath();
+
+    // Punto inicial de la línea
+    ctx.moveTo(margin, y);
+
+    // Punto final de la línea
+    ctx.lineTo(canvas.width - margin, y);
+
+    // Dibujar la línea
+    ctx.stroke();
+}
