@@ -6,9 +6,9 @@ const canvas = document.getElementById('canvas');
 // Contexto 2D utilizado para dibujar sobre el canvas
 const ctx = canvas.getContext('2d');
 // Tamaño de cada celda de la cuadrícula
-const gridSize = 15;
+const gridSize = 25;
 // Margen para dejar espacio a las escalas numéricas
-const margin = 40;
+const margin = 50;
 /**
  * Limpia completamente el canvas antes de volver a dibujar.
  */
@@ -19,7 +19,7 @@ function drawGrid() {
  * Limpia completamente el canvas antes de volver a dibujar.
  */
 function drawGrid() {
-    ctx.clearRect(0, canvas.height);
+    ctx.clearRect(0, 0, canvas width,canvas.height);
 
     // Dibujar líneas verticales de la cuadrícula
     for (let x = margin; x <= canvas.width - margin; x += gridSize) {
@@ -36,3 +36,6 @@ function drawGrid() {
         ctx.stroke();
     }
 }
+// Dibujar la cuadrícula apenas cargue la página
+drawGrid();
+bresenham(x0, y0, x1, y1, plot);Agregar evento click al botón dibujar
