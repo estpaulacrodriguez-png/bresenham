@@ -15,3 +15,24 @@ const margin = 40;
 function drawGrid() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
+/**
+ * Limpia completamente el canvas antes de volver a dibujar.
+ */
+function drawGrid() {
+    ctx.clearRect(0, canvas.height);
+
+    // Dibujar líneas verticales de la cuadrícula
+    for (let x = margin; x <= canvas.width - margin; x += gridSize) {
+        // Iniciar una nueva línea
+        ctx.beginPath();
+
+        // Posición inicial de la línea
+        ctx.moveTo(x, margin);
+
+        // Posición final de la línea
+        ctx.lineTo(x, canvas.height - margin);
+
+        // Dibujar la línea en pantalla
+        ctx.stroke();
+    }
+}
