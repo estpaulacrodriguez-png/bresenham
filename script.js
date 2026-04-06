@@ -176,48 +176,7 @@ function bresenham(x0, y0, x1, y1, plot) {
         }
     }
 }
-// Limpiar la tabla
-tabla.innerHTML = '';
 
-// Contador de pasos
-let paso = 1;
-
-while (true) {
-    // Dibujar punto actual
-    plot(x0, y0);
-
-    // Calcular e2
-    let e2 = 2 * err;
-
-    // Agregar fila a la tabla
-    tabla.innerHTML += `
-            <tr>
-                <td>${paso}</td>
-                <td>${x0}</td>
-                <td>${y0}</td>
-                <td>${err}</td>
-                <td>${e2}</td>
-            </tr>
-        `;
-
-    // Incrementar número de paso
-    paso++;
-
-    // Verificar si ya llegó al punto final
-    if (x0 === x1 && y0 === y1)
-        break;
-}
-      // Ajustar X
-        if (e2 > -dy) {
-            err -= dy;
-            x0 += sx;
-        }
-
-        // Ajustar Y
-        if (e2 < dx) {
-            err += dx;
-            y0 += sy;
-        }
 /**
  * Obtiene las coordenadas del formulario y dibuja la línea.
  */
@@ -234,11 +193,11 @@ function dibujarLinea() {
     // Ejecutar Bresenham
     bresenham(x0, y0, x1, y1, plot);
 }
-// Obtener referencia al botón
+// Obtener referencia del botón de dibujar
 const boton = document.getElementById('btnDibujar');
 
-// Ejecutar dibujarLinea cuando se haga clic
+// Ejecutar la función dibujarLinea al hacer clic
 boton.addEventListener('click', dibujarLinea);
 
-// Dibujar la cuadrícula apenas carga la página
+// Dibujar la cuadrícula apenas cargue la página
 drawGrid();
