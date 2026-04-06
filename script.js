@@ -1,6 +1,3 @@
-console.log("Proyecto iniciado");
-console.log('Aplicación iniciada');
-
 // Referencia al elemento canvas del HTML
 const canvas = document.getElementById('canvas');
 // Contexto 2D utilizado para dibujar sobre el canvas
@@ -14,14 +11,13 @@ const margin = 50;
  */
 function drawGrid() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-}
-/**
- * Limpia completamente el canvas antes de volver a dibujar.
- */
-function drawGrid() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    // Dibujar líneas verticales de la cuadrícula
+    // Color de las líneas de la cuadrícula
+    ctx.strokeStyle = '#cccccc';
+    ctx.lineWidth = 1;
+
+
+     // Dibujar líneas verticales de la cuadrícula
     for (let x = margin; x <= canvas.width - margin; x += gridSize) {
         // Iniciar una nueva línea
         ctx.beginPath();
@@ -35,21 +31,21 @@ function drawGrid() {
         // Dibujar la línea en pantalla
         ctx.stroke();
     }
-}
-// Dibujar líneas horizontales de la cuadrícula
-for (let y = margin; y <= canvas.height - margin; y += gridSize) {
-    // Iniciar una nueva línea
-    ctx.beginPath();
 
-    // Punto inicial de la línea
-    ctx.moveTo(margin, y);
+       // Dibujar líneas horizontales de la cuadrícula
+    for (let y = margin; y <= canvas.height - margin; y += gridSize) {
+        // Iniciar una nueva línea
+        ctx.beginPath();
 
-    // Punto final de la línea
-    ctx.lineTo(canvas.width - margin, y);
+        // Punto inicial de la línea
+        ctx.moveTo(margin, y);
 
-    // Dibujar la línea
-    ctx.stroke();
-}
+        // Punto final de la línea
+        ctx.lineTo(canvas.width - margin, y);
+
+        // Dibujar la línea
+        ctx.stroke();
+    }
 // Configuración del texto de escalas
 ctx.fillStyle = 'black';
 ctx.font = '12px Arial';
@@ -111,22 +107,54 @@ function plot(x, y) {
  * @param {number} y1 Coordenada Y final.
  * @param {Function} plot Función para dibujar puntos.
  */
+
 function bresenham(x0, y0, x1, y1, plot) {
-    // Calcular diferencias
     let dx = Math.abs(x1 - x0);
     let dy = Math.abs(y1 - y0);
 
-    // Determinar dirección en X
     let sx = (x0 < x1) ? 1 : -1;
-
-    // Determinar dirección en Y
     let sy = (y0 < y1) ? 1 : -1;
 
-    // Error inicial
     let err = dx - dy;
 
-    // Referencia al cuerpo de la tabla
-    const tabla = document.getElementById('tablaPasos')
+    const tabla = document.getElementById('tablaPasos');
+    tabla.innerHTML = '';
+
+    let paso = 1;
+
+    while (true) {
+        plot(x0, y0);
+
+        let e2 = 2 * err;
+
+        tabla.innerHTML += `
+            <tr>
+                <td>${paso}</td>
+                <td>${x0}</td>
+                <td>${y0}</td>
+                <td>${err}</td>
+                <td>${e2}</td>
+                <td>${dx}</td>
+                <td>${dy}</td>
+            </tr>
+        `;
+
+        paso++;
+
+        if (x0 === x1 && y0 === y1) {
+            break;
+        }
+
+        if (e2 > -dy) {
+            err -= dy;
+            x0 += sx;
+        }
+
+        if (e2 < dx) {
+            err += dx;
+            y0 += sy;
+        }
+    }
 }
 // Limpiar la tabla
 tabla.innerHTML = '';
@@ -186,3 +214,11 @@ function dibujarLinea() {
     // Ejecutar Bresenham
     bresenham(x0, y0, x1, y1, plot);
 }
+// Obtener referencia al botón
+const boton = document.getElementById('btnDibujar');
+
+// Ejecutar dibujarLinea cuando se haga clic
+boton.addEventListener('click', dibujarLinea);
+
+// Dibujar la cuadrícula apenas carga la página
+drawGrid();
