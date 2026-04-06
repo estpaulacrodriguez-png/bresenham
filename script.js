@@ -158,7 +158,24 @@ function bresenham(x0, y0, x1, y1, plot) {
 
         // Incrementar el número de paso
         paso++;
+       // Finalizar cuando se alcance el último punto
+        if (x0 === x1 && y0 === y1) {
+            break;
+        }
 
+        // Ajustar el desplazamiento horizontal
+        if (e2 > -dy) {
+            err -= dy;
+            x0 += sx;
+        }
+
+        // Ajustar el desplazamiento vertical
+        if (e2 < dx) {
+            err += dx;
+            y0 += sy;
+        }
+    }
+}
 // Limpiar la tabla
 tabla.innerHTML = '';
 
