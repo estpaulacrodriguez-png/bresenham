@@ -36,7 +36,7 @@ function drawGrid() {
         ctx.stroke();
     }
 }
-// Dibujar líneas verticales de la cuadrícula
+// Dibujar líneas horizontales de la cuadrícula
 for (let y = margin; y <= canvas.height - margin; y += gridSize) {
     // Iniciar una nueva línea
     ctx.beginPath();
@@ -50,3 +50,14 @@ for (let y = margin; y <= canvas.height - margin; y += gridSize) {
     // Dibujar la línea
     ctx.stroke();
 }
+// Configuración del texto de escalas
+    ctx.fillStyle = 'black';
+    ctx.font = '12px Arial';
+
+    // Dibujar escala horizontal
+    let escalaX = 0;
+
+    for (let x = margin; x <= canvas.width - margin; x += gridSize) {
+        ctx.fillText(escalaX, x - 5, canvas.height - margin + 20);
+        escalaX++;
+    }
