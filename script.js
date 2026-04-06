@@ -46,30 +46,34 @@ function drawGrid() {
         // Dibujar la línea
         ctx.stroke();
     }
-// Configuración del texto de escalas
-ctx.fillStyle = 'black';
-ctx.font = '12px Arial';
+   // Color utilizado para las escalas numéricas
+    ctx.fillStyle = 'black';
 
-// Dibujar escala horizontal
-let escalaX = 0;
+    // Fuente utilizada para mostrar los números
+    ctx.font = '12px Arial';
 
-for (let x = margin; x <= canvas.width - margin; x += gridSize) {
-    ctx.fillText(escalaX, x - 5, canvas.height - margin + 20);
-    escalaX++;
-}
-// Dibujar escala vertical
-let escalaY = 0;
+    // Variable que representa el valor de la escala
+    let escala = 0;
 
-for (let y = canvas.height - margin; y >= margin; y -= gridSize) {
-    ctx.fillText(escalaY, margin - 25, y + 5);
-    escalaY++;
-}
-// Configurar color de los ejes
-ctx.strokeStyle = 'black';
-ctx.lineWidth = 2;
+    // Dibujar números en la parte inferior del canvas
+    for (let x = margin; x <= canvas.width - margin; x += gridSize) {
+        // Mostrar el valor de la escala debajo de cada columna
+        ctx.fillText(escala, x - 5, canvas.height - margin + 20);
 
-// Dibujar ejes principales
-ctx.beginPath();
+        // Incrementar el valor de la escala
+        escala++;
+    }
+   // Reiniciar la variable de escala para el eje Y
+    escala = 0;
+
+    // Dibujar los números sobre el lado izquierdo del canvas
+    for (let y = canvas.height - margin; y >= margin; y -= gridSize) {
+        // Mostrar el valor correspondiente al nivel de altura
+        ctx.fillText(escala, margin - 25, y + 5);
+
+        // Incrementar la escala
+        escala++;
+    }
 
 // Eje vertical
 ctx.moveTo(margin, margin);
