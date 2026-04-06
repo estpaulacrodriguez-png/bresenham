@@ -159,3 +159,30 @@ while (true) {
     if (x0 === x1 && y0 === y1)
         break;
 }
+      // Ajustar X
+        if (e2 > -dy) {
+            err -= dy;
+            x0 += sx;
+        }
+
+        // Ajustar Y
+        if (e2 < dx) {
+            err += dx;
+            y0 += sy;
+        }
+/**
+ * Obtiene las coordenadas del formulario y dibuja la línea.
+ */
+function dibujarLinea() {
+    // Obtener coordenadas ingresadas
+    const x0 = parseInt(document.getElementById('x0').value);
+    const y0 = parseInt(document.getElementById('y0').value);
+    const x1 = parseInt(document.getElementById('x1').value);
+    const y1 = parseInt(document.getElementById('y1').value);
+
+    // Redibujar la cuadrícula
+    drawGrid();
+
+    // Ejecutar Bresenham
+    bresenham(x0, y0, x1, y1, plot);
+}
