@@ -61,3 +61,14 @@ for (let y = margin; y <= canvas.height - margin; y += gridSize) {
         ctx.fillText(escalaX, x - 5, canvas.height - margin + 20);
         escalaX++;
     }
+   // Dibujar escala vertical
+    let escalaY = 0;
+
+    for (let y = canvas.height - margin; y >= margin; y -= gridSize) {
+        ctx.fillText(escalaY, margin - 25, y + 5);
+        escalaY++;
+    }   
+      // Configurar color de los ejes
+    ctx.strokeStyle = 'black';
+    ctx.lineWidth = 2;
+
