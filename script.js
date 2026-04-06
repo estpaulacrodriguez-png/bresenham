@@ -72,3 +72,16 @@ for (let y = margin; y <= canvas.height - margin; y += gridSize) {
     ctx.strokeStyle = 'black';
     ctx.lineWidth = 2;
 
+    // Dibujar ejes principales
+    ctx.beginPath();
+
+    // Eje vertical
+    ctx.moveTo(margin, margin);
+    ctx.lineTo(margin, canvas.height - margin);
+
+    // Eje horizontal
+    ctx.lineTo(canvas.width - margin, canvas.height - margin);
+
+    // Mostrar ejes
+    ctx.stroke();
+
