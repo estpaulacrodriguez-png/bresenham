@@ -84,4 +84,21 @@ for (let y = margin; y <= canvas.height - margin; y += gridSize) {
 
     // Mostrar ejes
     ctx.stroke();
+/**
+ * Dibuja un punto en la cuadrícula.
+ * @param {number} x Coordenada X.
+ * @param {number} y Coordenada Y.
+ */
+function plot(x, y) {
+    // Convertir coordenada X
+    const canvasX = margin + (x * gridSize);
 
+    // Convertir coordenada Y
+    const canvasY = canvas.height - margin - (y * gridSize);
+
+    // Color del punto
+    ctx.fillStyle = 'red';
+
+    // Dibujar el punto
+    ctx.fillRect(canvasX - 4, canvasY - 4, 8, 8);
+}
