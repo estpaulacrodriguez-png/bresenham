@@ -137,11 +137,15 @@ function bresenham(x0, y0, x1, y1, plot) {
     // Variable para numerar cada paso
     let paso = 1;
 
+      // Ciclo principal que se ejecuta hasta llegar al punto final
     while (true) {
+        // Dibujar el punto actual
         plot(x0, y0);
 
+        // Multiplicar el error por 2 para evaluar movimientos
         let e2 = 2 * err;
 
+        // Agregar fila a la tabla
         tabla.innerHTML += `
             <tr>
                 <td>${paso}</td>
@@ -149,28 +153,12 @@ function bresenham(x0, y0, x1, y1, plot) {
                 <td>${y0}</td>
                 <td>${err}</td>
                 <td>${e2}</td>
-                <td>${dx}</td>
-                <td>${dy}</td>
             </tr>
         `;
 
+        // Incrementar el número de paso
         paso++;
 
-        if (x0 === x1 && y0 === y1) {
-            break;
-        }
-
-        if (e2 > -dy) {
-            err -= dy;
-            x0 += sx;
-        }
-
-        if (e2 < dx) {
-            err += dx;
-            y0 += sy;
-        }
-    }
-}
 // Limpiar la tabla
 tabla.innerHTML = '';
 
