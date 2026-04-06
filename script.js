@@ -19,7 +19,7 @@ function drawGrid() {
  * Limpia completamente el canvas antes de volver a dibujar.
  */
 function drawGrid() {
-    ctx.clearRect(0, 0, canvas.width,canvas.height);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     // Dibujar líneas verticales de la cuadrícula
     for (let x = margin; x <= canvas.width - margin; x += gridSize) {
@@ -51,39 +51,39 @@ for (let y = margin; y <= canvas.height - margin; y += gridSize) {
     ctx.stroke();
 }
 // Configuración del texto de escalas
-    ctx.fillStyle = 'black';
-    ctx.font = '12px Arial';
+ctx.fillStyle = 'black';
+ctx.font = '12px Arial';
 
-    // Dibujar escala horizontal
-    let escalaX = 0;
+// Dibujar escala horizontal
+let escalaX = 0;
 
-    for (let x = margin; x <= canvas.width - margin; x += gridSize) {
-        ctx.fillText(escalaX, x - 5, canvas.height - margin + 20);
-        escalaX++;
-    }
-   // Dibujar escala vertical
-    let escalaY = 0;
+for (let x = margin; x <= canvas.width - margin; x += gridSize) {
+    ctx.fillText(escalaX, x - 5, canvas.height - margin + 20);
+    escalaX++;
+}
+// Dibujar escala vertical
+let escalaY = 0;
 
-    for (let y = canvas.height - margin; y >= margin; y -= gridSize) {
-        ctx.fillText(escalaY, margin - 25, y + 5);
-        escalaY++;
-    }   
-      // Configurar color de los ejes
-    ctx.strokeStyle = 'black';
-    ctx.lineWidth = 2;
+for (let y = canvas.height - margin; y >= margin; y -= gridSize) {
+    ctx.fillText(escalaY, margin - 25, y + 5);
+    escalaY++;
+}
+// Configurar color de los ejes
+ctx.strokeStyle = 'black';
+ctx.lineWidth = 2;
 
-    // Dibujar ejes principales
-    ctx.beginPath();
+// Dibujar ejes principales
+ctx.beginPath();
 
-    // Eje vertical
-    ctx.moveTo(margin, margin);
-    ctx.lineTo(margin, canvas.height - margin);
+// Eje vertical
+ctx.moveTo(margin, margin);
+ctx.lineTo(margin, canvas.height - margin);
 
-    // Eje horizontal
-    ctx.lineTo(canvas.width - margin, canvas.height - margin);
+// Eje horizontal
+ctx.lineTo(canvas.width - margin, canvas.height - margin);
 
-    // Mostrar ejes
-    ctx.stroke();
+// Mostrar ejes
+ctx.stroke();
 /**
  * Dibuja un punto en la cuadrícula.
  * @param {number} x Coordenada X.
@@ -126,4 +126,36 @@ function bresenham(x0, y0, x1, y1, plot) {
     let err = dx - dy;
 
     // Referencia al cuerpo de la tabla
-    const tabla = document.getElementById('tablaPasos')}
+    const tabla = document.getElementById('tablaPasos')
+}
+// Limpiar la tabla
+tabla.innerHTML = '';
+
+// Contador de pasos
+let paso = 1;
+
+while (true) {
+    // Dibujar punto actual
+    plot(x0, y0);
+
+    // Calcular e2
+    let e2 = 2 * err;
+
+    // Agregar fila a la tabla
+    tabla.innerHTML += `
+            <tr>
+                <td>${paso}</td>
+                <td>${x0}</td>
+                <td>${y0}</td>
+                <td>${err}</td>
+                <td>${e2}</td>
+            </tr>
+        `;
+
+    // Incrementar número de paso
+    paso++;
+
+    // Verificar si ya llegó al punto final
+    if (x0 === x1 && y0 === y1)
+        break;
+}
