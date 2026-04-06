@@ -74,16 +74,25 @@ function drawGrid() {
         // Incrementar la escala
         escala++;
     }
+  // Cambiar el color de los ejes principales
+    ctx.strokeStyle = 'black';
 
-// Eje vertical
-ctx.moveTo(margin, margin);
-ctx.lineTo(margin, canvas.height - margin);
+    // Hacer que los ejes sean más gruesos
+    ctx.lineWidth = 2;
 
-// Eje horizontal
-ctx.lineTo(canvas.width - margin, canvas.height - margin);
+    // Iniciar el trazado de los ejes
+    ctx.beginPath();
 
-// Mostrar ejes
-ctx.stroke();
+    // Dibujar eje vertical
+    ctx.moveTo(margin, margin);
+    ctx.lineTo(margin, canvas.height - margin);
+
+    // Dibujar eje horizontal
+    ctx.lineTo(canvas.width - margin, canvas.height - margin);
+
+    // Mostrar los ejes en pantalla
+    ctx.stroke();
+}
 /**
  * Dibuja un punto en la cuadrícula.
  * @param {number} x Coordenada X.
