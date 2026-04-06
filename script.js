@@ -102,3 +102,28 @@ function plot(x, y) {
     // Dibujar el punto
     ctx.fillRect(canvasX - 4, canvasY - 4, 8, 8);
 }
+
+/**
+ * Algoritmo de Bresenham para dibujar líneas.
+ * @param {number} x0 Coordenada X inicial.
+ * @param {number} y0 Coordenada Y inicial.
+ * @param {number} x1 Coordenada X final.
+ * @param {number} y1 Coordenada Y final.
+ * @param {Function} plot Función para dibujar puntos.
+ */
+function bresenham(x0, y0, x1, y1, plot) {
+    // Calcular diferencias
+    let dx = Math.abs(x1 - x0);
+    let dy = Math.abs(y1 - y0);
+
+    // Determinar dirección en X
+    let sx = (x0 < x1) ? 1 : -1;
+
+    // Determinar dirección en Y
+    let sy = (y0 < y1) ? 1 : -1;
+
+    // Error inicial
+    let err = dx - dy;
+
+    // Referencia al cuerpo de la tabla
+    const tabla = document.getElementById('tablaPasos')}
